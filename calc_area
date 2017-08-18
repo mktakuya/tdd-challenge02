@@ -1,1 +1,16 @@
 #!/usr/bin/env ruby
+
+require './lib/input_parser'
+require './lib/circle'
+require './lib/output_processor'
+
+input_parser = InputParser.new
+output_processor = OutputProcessor.new
+
+results = input_parser.execute(STDIN.read).map do |item|
+  circle = Circle.new(item)
+  circle.calc_rounded_area
+end
+
+output_processor.execute(results)
+
